@@ -1,0 +1,24 @@
+<table>
+        <tr>
+               <td align="center" style="background-color:#5d9cec;padding:10px;">
+               <img src="https://s3-us-west-2.amazonaws.com/textoclick/common/textoclick_sm.png" width="157" height="37">
+               </td>
+        </tr>
+        <tr>
+               <td style="padding-top:40px; padding-bottom:40px;">
+                    Hola <strong><%= user.firstName %> <%= user.lastName %></strong><br><br>
+                     Gracias por registrate a <strong>TextoClick.</strong> Para activar tu cuenta
+                     <a href="<%= user.backend_url %>/activation/<%= user.activationCode %>">click aquí</a>
+                     <br><br>
+                     Si tienes algún problema con el enlace puedes copiar y pegar el siguiente link en tu navegador
+                     <a href="<%= user.backend_url %>/activation/<%= user.activationCode %>">
+                     <%= user.backend_url %>/activation/<%= user.activationCode %>
+                     </a><br><br>
+                     Atentamente: <br>
+                     <strong>Equipo de TextoClick</strong>
+                     </td>
+        </tr>
+        <tr>
+               <td align="center" style="height:70px;background-color:#5d9cec; color:#fff;">Textoclick 2800 painted lake circle, The Colony TX</td>
+        </tr>
+</table>

@@ -1,0 +1,38 @@
+{
+  "name": "estadiototalv2_api",
+  "version": "1.0.0",
+  "description": "EstadioTotal version 2",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarriaga/estadiototalv2_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarriaga/estadiototalv2_api/issues"
+  },
+  "homepage": "https://github.com/jarriaga/estadiototalv2_api#readme",
+  "dependencies": {
+    "aws-sdk": "^2.279.1",
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "glob": "^7.1.2",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.3",
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5",
+    "serverless-http": "^1.6.0",
+    "sparkpost": "^2.1.2"
+  }
+}
