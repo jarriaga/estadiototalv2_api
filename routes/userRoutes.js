@@ -17,7 +17,6 @@ module.exports = (app) => {
   //protected routes
   //================== USER METHODS
   app.route('/user/password/update').post(jwt.validate_route,user.password_update);
-  app.route('/user/profile/edit').post(jwt.validate_route,user.edit_profile);
   app.route('/user/profile/photo').post(jwt.validate_route,user.upload_photo);
   app.route('/user/scope').post(jwt.validate_route,user.user_scope);
 

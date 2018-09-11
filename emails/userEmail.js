@@ -23,8 +23,8 @@ exports.activation_email = (user) => {
           sandbox: false
         },
         content: {
-          from: 'TextoClick <no.reply@textoclick.com>',
-          subject: 'Sending with SendGrid is Fun',
+          from: 'EstadioTotal.com <no.reply@estadiototal.com>',
+          subject: 'Registro',
           html: str
         },
         recipients: [{

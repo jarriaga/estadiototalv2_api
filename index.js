@@ -41,4 +41,9 @@ glob.sync('./routes/*.js').forEach((file) => {
   require(path.resolve(file))(app);
 });
 
+
+app.route('/robles-test').get((req, res) => {
+  res.json({success:'hola mundo'});
+})
+
 module.exports.handler = serverless(app);

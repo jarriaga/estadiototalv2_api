@@ -5,7 +5,7 @@ var User = require('../models/userModel'),
   _ = require('lodash'),
   randomstring = require('randomstring'),
   jwt = require('../middleware/jwt'),
-  bcrypt = require('bcrypt'),
+  bcrypt = require('bcryptjs'),
   storage = require('../helpers/storage');
 
 
@@ -146,36 +146,6 @@ exports.password_update = (req, res) => {
         if (err) return console.log("****************" + err);
         res.json({
           success: 'password-updated'
-        });
-      });
-    } else {
-      res.status(400).json({
-        error: 'user-not-found'
-      });
-    }
-  });
-};
-//=============== Method to update user's profilePicture
-exports.edit_profile = (req, res) => {
-  //find for user
-  User.findOne({
-    _id: req.jwt._id
-  }, (err, _user) => {
-    if (err) return console.log("****************" + err);
-    if (_user) {
-      _user.firstName = req.body.firstName || _user.firstName;
-      _user.lastName = req.body.lastName || _user.lastName;
-      _user.dob = req.body.dob || _user.dob;
-      _user.city = req.body.city || _user.city;
-      _user.state = req.body.state || _user.country;
-      _user.country = req.body.country || _user.country;
-      _user.bio = req.body.bio || _user.bio;
-      _user.profilePicture = req.body.profilePicture || _user.profilePicture;
-      //saving user
-      _user.save(err => {
-        if (err) return console.log("****************" + err);
-        res.json({
-          success: 'profile-updated'
         });
       });
     } else {
