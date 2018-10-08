@@ -11,9 +11,9 @@ var User = require('../models/userModel'),
 
 //================= Method POST to submit a new user
 exports.signup_new_user = (req, res) => {
-  req.checkBody('email', 'El email es requerido').notEmpty();
-  req.checkBody('password', 'Ingresa una password').notEmpty();
-  req.checkBody('username', 'El nombre de usuario es requerido').notEmpty();
+  // req.checkBody('email', 'El email es requerido').notEmpty();
+  // req.checkBody('password', 'Ingresa una password').notEmpty();
+  // req.checkBody('username', 'El nombre de usuario es requerido').notEmpty();
   // Validate inputs
   var errors = req.validationErrors();
   //if errors exists return
@@ -82,7 +82,7 @@ exports.activate_user = (req, res) => {
       _user.active = true;
       _user.save((err) => {
         if (err) return console.log("************ " + err);
-        res.redirect(`${process.env.FRONTEND_URL}/activated`);
+        res.redirect(`${process.env.FRONTEND_URL}/account-active`);
       });
     } else {
       res.redirect(`${process.env.FRONTEND_URL}/login`);
@@ -91,8 +91,6 @@ exports.activate_user = (req, res) => {
 };
 //=================== Method POST to log in a user and return the jwt
 exports.login_user = (req, res) => {
-  req.checkBody('email', 'El email/usuario es requerido').notEmpty();
-  req.checkBody('password', 'Ingresa una password').notEmpty();
   // Validate inputs
   var errors = req.validationErrors();
   //if errors exists return
@@ -108,7 +106,7 @@ exports.login_user = (req, res) => {
     ],
     active: true
   }, (err, _user) => {
-    if (err) return console.log("****************" + err);
+    if (err) console.log("****************" + err);
     if (_user) {
       if (bcrypt.compareSync(req.body.password, _user.password)) {
         _user = _user.toObject();

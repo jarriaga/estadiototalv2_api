@@ -24,7 +24,7 @@ exports.activation_email = (user) => {
         },
         content: {
           from: 'EstadioTotal.com <no.reply@estadiototal.com>',
-          subject: 'Registro',
+          subject: 'Gracias por registrarte',
           html: str
         },
         recipients: [{
@@ -33,7 +33,6 @@ exports.activation_email = (user) => {
       })
       .then(data => {
         console.log(`new signup email have been sent-----> ${user.email}`);
-        console.log('Woohoo! You just sent your first mailing!');
       })
       .catch(err => {
         console.log('Whoops! Something went wrong');
