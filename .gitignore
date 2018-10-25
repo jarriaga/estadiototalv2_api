@@ -1,7 +1,8 @@
 # package directories
 node_modules
 jspm_packages
-
+.DS_Store
 # Serverless directories
 .serverless
 .env
+routes/DB
