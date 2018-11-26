@@ -11,10 +11,6 @@ var User = require('../models/userModel'),
 
 //================= Method POST to submit a new user
 exports.signup_new_user = (req, res) => {
-  // req.checkBody('email', 'El email es requerido').notEmpty();
-  // req.checkBody('password', 'Ingresa una password').notEmpty();
-  // req.checkBody('username', 'El nombre de usuario es requerido').notEmpty();
-  // Validate inputs
   var errors = req.validationErrors();
   //if errors exists return
   if (errors)

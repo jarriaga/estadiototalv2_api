@@ -12,7 +12,14 @@ const User = require('../models/userModel'),
 
 //================= get Tournaments list
 exports.get_tournament_list = (req, res) => {
-
-  
+  let userId = req.jwt._id;
+  Tournament.find({'admin.adminId': userId}, ( err,tournament ) => {
+    if(err) return console.log('error');
+    tournament = tournament.map( item => { 
+      item = item.toObject();
+      delete item.config; return item; 
+    });
+    res.json(tournament);
+  });  
 }
 
