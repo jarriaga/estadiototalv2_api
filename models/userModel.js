@@ -47,6 +47,9 @@ var UserSchema = new Schema({
   activationCode:{
     type:String
   },
+  recoveryCode:{
+    type:String
+  },
   bio:{
     type:String
   },

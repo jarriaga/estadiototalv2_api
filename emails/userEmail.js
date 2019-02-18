@@ -12,11 +12,9 @@ exports.activation_email = (user) => {
     user: user
   }, {}, function (err, str) {
 
-
     if (err) {
       console.log(err)
     }
-
 
     sparky.transmissions.send({
         options: {
@@ -40,3 +38,43 @@ exports.activation_email = (user) => {
       });
   });
 } //End   activation_email
+
+
+
+
+//************  RESET PASSWORD email
+
+exports.resetpassword_email = (user) => {
+
+  user.lastName = user.lastName || '';
+  user.backend_url = process.env.BACKEND_URL;
+  user.frontend_url = process.env.FRONTEND_URL;
+  ejs.renderFile(__dirname + '/email-reset-password.html', {
+    user: user
+  }, {}, function (err, str) {
+    if (err) {
+      return console.log(err)
+    }
+    sparky.transmissions.send({
+        options: {
+          sandbox: false
+        },
+        content: {
+          from: 'EstadioTotal.com <no.reply@estadiototal.com>',
+          subject: (user.firstName || 'Hey!')+ ', Recupera tu password',
+          html: str
+        },
+        recipients: [{
+          address: user.email
+        }]
+      })
+      .then(data => {
+        console.log(`reset password email have been sent-----> ${user.email}`);
+      })
+      .catch(err => {
+        console.log('Whoops! Something went wrong');
+        console.log(err);
+      });
+  });
+
+}

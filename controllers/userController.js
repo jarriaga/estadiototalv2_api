@@ -96,9 +96,12 @@ exports.login_user = (req, res) => {
     });
   //find for active user
   User.findOne({
-    $or:[
-      {email: req.body.email},
-      {username: req.body.email}
+    $or: [{
+        email: req.body.email
+      },
+      {
+        username: req.body.email
+      }
     ],
     active: true
   }, (err, _user) => {
@@ -126,6 +129,35 @@ exports.login_user = (req, res) => {
     }
   });
 };
+
+//================== FORGOT PASSWORD
+//========== method to send a reset password link to a user
+exports.forgot_password = (req, res) => {
+  console.log(req.body.email);
+  //find user
+  User.findOne({
+    email: req.body.email
+  }, (err, _user) => {
+    if (err) {
+      console.log("****************" + err);
+      return res.status(400).json({
+        error: 'user-not-found'
+      });
+    }
+
+    if (_user) {
+      _user.recoveryCode = randomstring.generate();
+      _user.save(err => {
+        userEmail.resetpassword_email(_user);
+        _user = _user.toObject();
+        delete _user.password;
+        console.log(_user);
+        return res.json({ok:'ok'});
+      });
+    }
+  });
+};
+
 //================ Method to update user's password
 exports.password_update = (req, res) => {
   //find for user
@@ -188,7 +220,7 @@ exports.upload_photo = (req, res) => {
 
 //================ Method to review the user scope
 exports.user_scope = (req, res) => {
- 
+
 }
 //============== Return parsed errors
 var returnError = (errors) => {
