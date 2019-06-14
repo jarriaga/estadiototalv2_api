@@ -181,6 +181,33 @@ exports.password_update = (req, res) => {
     }
   });
 };
+
+exports.password_recover = (req, res) => {
+  //find for user
+  console.log("hola");
+  console.log(req.body.token);
+  User.findOne({
+    recoveryCode: req.body.token
+  }, (err, _user) => {
+    if (err) return console.log("****************" + err);
+    console.log(_user)
+    //if user was found
+    if (_user) {
+      _user.password = bcrypt.hashSync(req.body.password,10);
+      _user.recoveryCode='';
+      _user.save(err => {
+        if (err) return console.log("****************" + err);
+        res.json({
+          success: 'password-updated'
+        });
+      });
+    } else {
+      res.status(400).json({
+        error: 'user-not-found'
+      });
+    }
+  });
+};
 //=============== Method to Upload user's photo profile
 exports.upload_photo = (req, res) => {
   var uploadingFile = storage.save_profile_photo_base64(req);

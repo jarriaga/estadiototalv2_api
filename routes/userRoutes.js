@@ -14,14 +14,13 @@ module.exports = (app) => {
     userEmail.activation_email({
       firstName: 'Jesus',
       email: 'jarriagabarron@gmail.com'
-    });
+    }); 
   });
   app.route('/forgot-password').post(user.forgot_password);
-
+  app.route('/recover-p').post(user.password_recover);
   //protected routes
   //================== USER METHODS
   app.route('/user/password/update').post(jwt.validate_route, user.password_update);
   app.route('/user/profile/photo').post(jwt.validate_route, user.upload_photo);
   app.route('/user/scope').post(jwt.validate_route, user.user_scope);
-
 }
