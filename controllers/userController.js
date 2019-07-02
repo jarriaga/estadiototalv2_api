@@ -161,9 +161,7 @@ exports.forgot_password = (req, res) => {
 //================ Method to update user's password
 exports.password_update = (req, res) => {
   //find for user
-  User.findOne({
-    _id: req.jwt._id
-  }, (err, _user) => {
+  User.findOne({_id: req.jwt._id}, (err, _user) => {
     if (err) return console.log("****************" + err);
     //if user was found
     if (_user) {
@@ -198,7 +196,7 @@ exports.password_recover = (req, res) => {
       _user.save(err => {
         if (err) return console.log("****************" + err);
         res.json({
-          success: 'password-updated'
+          success: 'password-recover'
         });
       });
     } else {

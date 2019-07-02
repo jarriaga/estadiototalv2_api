@@ -10,5 +10,5 @@ module.exports = (app) => {
   //protected routes
   //================== TOURNAMENT METHODS
   app.route('/tournament/list').post(jwt.validate_route,tournament.get_tournament_list);
-
+  app.route('/tournament').post(jwt.validate_route,tournament._new_tournament);
 }
